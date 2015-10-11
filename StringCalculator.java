@@ -15,13 +15,24 @@ public class StringCalculator {
 		}
 		else {
 			int result = 0;
-			int idx = numbers.indexOf(',');
-			String A, B = "";
 			
-			A = numbers.substring(0, idx);
-			B = numbers.substring(++idx, numbers.length());
-			
-			result = Integer.parseInt(A) + Integer.parseInt(B);
+			for(int i = 0; i < numbers.length(); i++)
+			{
+				String temp = "";
+				while(i < numbers.length() && numbers.charAt(i) != ',' )
+				{
+					temp += numbers.charAt(i);
+					i++;
+				}
+				result += Integer.parseInt(temp);
+			}
+//			int idx = numbers.indexOf(',');
+//			String A, B = "";
+//			
+//			A = numbers.substring(0, idx);
+//			B = numbers.substring(++idx, numbers.length());
+//			
+//			result = Integer.parseInt(A) + Integer.parseInt(B);
 			
 			return result;
 		}
@@ -36,4 +47,5 @@ public class StringCalculator {
 		StdOut.println(result);
 	}
 }
+
 

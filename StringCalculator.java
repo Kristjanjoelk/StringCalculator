@@ -40,12 +40,20 @@ public class StringCalculator {
 	
 	public static void main(String[] args)
 	{
-		String input = StdIn.readLine();
+		String numbers = "";
+		while(true)
+		{
+			String input = StdIn.readLine();
+			if(input.equals(""))
+			{
+				break;
+			}
+			numbers += input +  ",";
+		}
 		
-		int result = add(input);
+		int result = add(numbers);
 
 		StdOut.println(result);
 	}
 }
-
 

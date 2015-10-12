@@ -9,31 +9,27 @@ public class StringCalculator {
 		{
 			return 0;
 		}
-		else if(!numbers.contains(","))
-		{
-			return Integer.parseInt(numbers);
-		}
 		else {
 			int result = 0;
-			
-			for(int i = 0; i < numbers.length(); i++)
+			int index = 0;
+			String nothing = " ";
+			char delimiter = ',';
+			if(numbers.contains("//"))
+			{
+				delimiter = numbers.charAt(2);
+				index = 4;
+			}
+			for(int i = index; i < numbers.length(); i++)
 			{
 				String temp = "";
-				while(i < numbers.length() && numbers.charAt(i) != ',' )
+				while(i < numbers.length() && (numbers.charAt(i) != ',' && numbers.charAt(i) != delimiter ))
 				{
 					temp += numbers.charAt(i);
 					i++;
 				}
-				result += Integer.parseInt(temp);
+				if(!temp.isEmpty())
+					result += Integer.parseInt(temp);
 			}
-//			int idx = numbers.indexOf(',');
-//			String A, B = "";
-//			
-//			A = numbers.substring(0, idx);
-//			B = numbers.substring(++idx, numbers.length());
-//			
-//			result = Integer.parseInt(A) + Integer.parseInt(B);
-			
 			return result;
 		}
 	}
@@ -41,16 +37,12 @@ public class StringCalculator {
 	public static void main(String[] args)
 	{
 		String numbers = "";
-		while(true)
+		String input = "";
+		while(!StdIn.isEmpty())
 		{
-			String input = StdIn.readLine();
-			if(input.equals(""))
-			{
-				break;
-			}
-			numbers += input +  ",";
+			input = StdIn.readString();
+			numbers += input + ",";
 		}
-		
 		int result = add(numbers);
 
 		StdOut.println(result);

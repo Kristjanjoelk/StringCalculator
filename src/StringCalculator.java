@@ -1,5 +1,5 @@
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+
+
 
 public class StringCalculator {
 	
@@ -38,14 +38,14 @@ public class StringCalculator {
 	{
 		String numbers = "";
 		String input = "";
+		StdOut.println("Input numbers please: ");
 		while(!StdIn.isEmpty())
 		{
 			input = StdIn.readString();
 			numbers += input + ",";
 		}
 		int result = add(numbers);
-
-		StdOut.println(result);
+		StdOut.println("Answers: " + result);
 	}
 }
 

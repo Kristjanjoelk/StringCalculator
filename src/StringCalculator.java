@@ -1,10 +1,11 @@
-
-
-
 public class StringCalculator {
-	
+	public static class negNumException extends Exception {
+		  public negNumException(String message) { super(message); }
+		  public negNumException(String message, Throwable cause) { super(message, cause); }
+		}
 	public static int add(String numbers)
 	{
+		String negNum = "";
 		if(numbers.isEmpty())
 		{
 			return 0;
@@ -12,7 +13,6 @@ public class StringCalculator {
 		else {
 			int result = 0;
 			int index = 0;
-			String nothing = " ";
 			char delimiter = ',';
 			if(numbers.contains("//"))
 			{
@@ -28,7 +28,43 @@ public class StringCalculator {
 					i++;
 				}
 				if(!temp.isEmpty())
-					result += Integer.parseInt(temp);
+				{
+					try
+					{
+						if(Integer.parseInt(temp) < 0)
+						{
+							throw new negNumException(temp);
+					    }
+						else
+						{
+							result += Integer.parseInt(temp);
+						}
+					}
+					catch(negNumException ex)
+					{
+						if(negNum.isEmpty()) negNum += ex.getMessage();
+						else negNum += "," + ex.getMessage();
+					}					
+				}	
+			}
+			if(!negNum.isEmpty())
+			{
+				result = 0;
+				StdOut.print("Negatives not allowed: ");
+				for(int i = 0; i < negNum.length(); i++)
+				{
+					String temp = "";
+					while(i < negNum.length())
+					{
+						temp += negNum.charAt(i);
+						i++;
+					}
+					if(!temp.isEmpty())
+					{
+						StdOut.print(temp);
+					}
+				}
+				StdOut.println();
 			}
 			return result;
 		}
@@ -38,14 +74,18 @@ public class StringCalculator {
 	{
 		String numbers = "";
 		String input = "";
-		StdOut.println("Input numbers please: ");
 		while(!StdIn.isEmpty())
 		{
 			input = StdIn.readString();
-			numbers += input + ",";
+			numbers += input + ",";	
+
 		}
 		int result = add(numbers);
-		StdOut.println("Answers: " + result);
+		
+		if(result > 0)
+		{
+			StdOut.println(result);
+		}
 	}
 }
 

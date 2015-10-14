@@ -1,0 +1,5 @@
+#!/bin/bash
+if [ ! -d classes ]; then 
+  mkdir classes 
+fi
+javac -cp '.:lib/algs4.jar' src/StringCalculator.java -d classes

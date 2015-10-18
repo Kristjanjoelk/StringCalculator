@@ -1,4 +1,4 @@
-c class StringCalculator {
+public class StringCalculator {
 	public static class negNumException extends Exception {
 		  public negNumException(String message) { super(message); }
 		  public negNumException(String message, Throwable cause) { super(message, cause); }

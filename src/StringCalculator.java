@@ -22,6 +22,36 @@ c class StringCalculator {
 		}
 		StdOut.println();
 	}
+	public static String getDelimiter(String numbers)
+	{
+		String delimiter = "";
+		for(int i = 3; i < numbers.length(); i++)
+		{
+				if(numbers.charAt(i) == ']')
+				{
+					break;
+				}
+				else
+				{
+					delimiter += numbers.charAt(i);
+				}
+		}
+		return delimiter;
+	}
+	public static String removeDelimiterFromString(String numbers)
+	{
+		int counter = 0;
+		int i;
+		for(i = 0; i < numbers.length(); i++)
+		{
+				if(numbers.charAt(i) == ']')
+				{
+					break;
+				}
+
+		}
+		return numbers.substring(i + 2);
+	}
 	public static int add(String numbers)
 	{
 		String negNum = "";
@@ -31,17 +61,19 @@ c class StringCalculator {
 		}
 		else {
 			int result = 0;
-			int index = 0;
-			char delimiter = ',';
+			String delimiter = ",";
 			if(numbers.contains("//"))
 			{
-				delimiter = numbers.charAt(2);
-				index = 4;
+				delimiter = getDelimiter(numbers);
+				
+				// debugging purposes
+				StdOut.println("delimiter: " + delimiter);
+				numbers = removeDelimiterFromString(numbers);
 			}
-			for(int i = index; i < numbers.length(); i++)
+			for(int i = 0; i < numbers.length(); i++)
 			{
 				String temp = "";
-				while(i < numbers.length() && (numbers.charAt(i) != ',' && numbers.charAt(i) != delimiter ))
+				while(i < numbers.length() && (numbers.charAt(i) != ',' && !delimiter.contains("" + numbers.charAt(i))))
 				{
 					temp += numbers.charAt(i);
 					i++;
@@ -94,3 +126,4 @@ c class StringCalculator {
 		}
 	}
 }
+

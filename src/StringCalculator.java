@@ -1,8 +1,27 @@
-public class StringCalculator {
+c class StringCalculator {
 	public static class negNumException extends Exception {
 		  public negNumException(String message) { super(message); }
 		  public negNumException(String message, Throwable cause) { super(message, cause); }
 		}
+	
+	public static void printNegatives(String negNum)
+	{
+		StdOut.print("Negatives not allowed: ");
+		for(int i = 0; i < negNum.length(); i++)
+		{
+			String temp = "";
+			while(i < negNum.length())
+			{
+				temp += negNum.charAt(i);
+				i++;
+			}
+			if(!temp.isEmpty())
+			{
+				StdOut.print(temp);
+			}
+		}
+		StdOut.println();
+	}
 	public static int add(String numbers)
 	{
 		String negNum = "";
@@ -35,6 +54,7 @@ public class StringCalculator {
 						{
 							throw new negNumException(temp);
 					    }
+						if(Integer.parseInt(temp) > 1000) {}
 						else
 						{
 							result += Integer.parseInt(temp);
@@ -50,21 +70,7 @@ public class StringCalculator {
 			if(!negNum.isEmpty())
 			{
 				result = 0;
-				StdOut.print("Negatives not allowed: ");
-				for(int i = 0; i < negNum.length(); i++)
-				{
-					String temp = "";
-					while(i < negNum.length())
-					{
-						temp += negNum.charAt(i);
-						i++;
-					}
-					if(!temp.isEmpty())
-					{
-						StdOut.print(temp);
-					}
-				}
-				StdOut.println();
+				printNegatives(negNum);
 			}
 			return result;
 		}
@@ -88,4 +94,3 @@ public class StringCalculator {
 		}
 	}
 }
-
